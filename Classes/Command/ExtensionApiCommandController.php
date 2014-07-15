@@ -189,6 +189,23 @@ class ExtensionApiCommandController extends CommandController {
 	}
 
 	/**
+	 * Remove an extension.
+	 *
+	 * @param string $key The extension key
+	 *
+	 * @return void
+	 */
+	public function removeCommand($key) {
+		try {
+			$this->extensionApiService->removeExtension($key);
+		} catch (Exception $e) {
+			$this->outputLine($e->getMessage());
+			$this->quit();
+		}
+		$this->outputLine(sprintf('Extension "%s" is now removed!', $key));
+	}
+
+	/**
 	 * Configure an extension.
 	 * This command enables you to configure an extension.
 	 *

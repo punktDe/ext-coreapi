@@ -293,6 +293,22 @@ class ExtensionApiService {
 		$this->installUtility->uninstall($extensionKey);
 	}
 
+	/**
+	 * Remove an extension.
+	 *
+	 * @param string $extensionKey extension key
+	 *
+	 * @throws RuntimeException
+	 * @throws InvalidArgumentException
+	 * @return void
+	 */
+	public function removeExtension($extensionKey) {
+		if ($extensionKey === 'coreapi') {
+			throw new InvalidArgumentException('Extension "coreapi" cannot be uninstalled!');
+		}
+
+		$this->installUtility->removeExtension($extensionKey);
+	}
 
 	/**
 	 * Configure an extension.
